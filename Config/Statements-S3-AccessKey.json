@@ -1,0 +1,136 @@
+{
+  "seed": 0,
+  "schemaName": "Statements",
+  "dimensionFieldSpecs": [
+    {
+      "name": "TxnTxnDesc",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.sentence()"
+      }
+    },
+    {
+      "name": "MobileNumber",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.phone_number()"
+      }
+    },
+    {
+      "name": "FName",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.first_name()"
+      }
+    },
+    {
+      "name": "LName",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.last_name()"
+      }
+    },
+    {
+      "name": "BranchAddress",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.street_address()"
+      }
+    },
+    {
+      "name": "CodDrCr",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.random_element([\"C\", \"D\"])"
+      }
+    },
+    {
+      "name": "name",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.name()"
+      }
+    },
+    {
+      "name": "RefTxnNo",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.uuid4()"
+      }
+    },
+    {
+      "name": "RefChqNo",
+      "dataType": "LONG",
+      "config": {
+        "expression": "Sequence",
+        "start": 100000,
+        "cardinality": 1000000
+      }
+    },
+    {
+      "name": "CodTxnMnemonic",
+      "dataType": "LONG",
+      "config": {
+        "expression": "Sequence",
+        "start": 1000,
+        "cardinality": 10000
+      }
+    },
+    {
+      "name": "CodAcctNo",
+      "dataType": "STRING",
+      "config": {
+        "expression": "Sequence",
+        "start": 100000000,
+        "cardinality": 100000000,
+        "prefix": "Cust_"
+      }
+    },
+    {
+      "name": "Branch",
+      "dataType": "STRING",
+      "config": {
+        "expression": "Sequence",
+        "start": 100000000,
+        "cardinality": 10000,
+        "prefix": "Branch__"
+      }
+    },
+    {
+      "name": "BranchCode",
+      "dataType": "LONG",
+      "config": {
+        "expression": "Increment",
+        "start": 1,
+        "cardinality": 1000
+      }
+    }
+  ],
+  "metricFieldSpecs": [
+    {
+      "name": "AmtTxn",
+      "dataType": "DECIMAL",
+      "config": {
+        "expression": "fake.random.randint(100,10000)/100"
+      }
+    }
+  ],
+  "dateTimeFieldSpecs": [
+    {
+      "name": "datTxn",
+      "dataType": "STRING",
+      "format": "SIMPLE_DATE_FORMAT|yyyy-MM-dd",
+      "granularity": "MILLISECONDS|1",
+      "config": {
+        "expression": "fake.date_time_between(datetime(2023, 1, 1),datetime(2023, 1, 31))"
+      }
+    }
+  ],
+  "primaryKeyColumns": [
+    "CodAcctNo"
+  ],
+  "connection": {
+    "target": "Files",
+    "type": "JSON"
+  }
+}

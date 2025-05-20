@@ -1,0 +1,165 @@
+{
+  "seed": 0,
+  "cardinality": 25,
+  "schemaName": "DataGeneratorSample",
+  "dimensionFieldSpecs": [
+    {
+      "name": "Sentence",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.sentence()"
+      }
+    },
+    {
+      "name": "Choice",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.random_element([\"1\", \"2\"])"
+      }
+    },
+    {
+      "name": "name",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.name()"
+      }
+    },
+    {
+      "name": "RandomInt",
+      "dataType": "LONG",
+      "config": {
+        "expression": "fake.random.randint(1,100)"
+      }
+    },
+    {
+      "name": "UUID",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.uuid4()"
+      }
+    },
+    {
+      "name": "Latitude",
+      "dataType": "DOUBLE",
+      "config": {
+        "expression": "fake.latitude()"
+      }
+    },
+    {
+      "name": "Longitude",
+      "dataType": "DOUBLE",
+      "config": {
+        "expression": "fake.longitude()"
+      }
+    },
+    {
+      "name": "is_updated",
+      "dataType": "BOOLEAN",
+      "config": {
+        "expression": "fake.boolean()"
+      }
+    },
+    {
+      "name": "Sequence",
+      "dataType": "LONG",
+      "config": {
+        "expression": "Sequence",
+        "start": 1,
+        "cardinality": 1000
+      }
+    },
+    {
+      "name": "Sequence_Prefix",
+      "dataType": "LONG",
+      "config": {
+        "expression": "Sequence",
+        "start": 1,
+        "cardinality": 1000,
+        "prefix": "Cust_"
+      }
+    },
+    {
+      "name": "Increment",
+      "dataType": "LONG",
+      "config": {
+        "expression": "Increment",
+        "start": 1
+      }
+    }
+  ],
+  "metricFieldSpecs": [
+    {
+      "name": "envelope_fields_generation_counter",
+      "dataType": "LONG",
+      "config": {
+        "expression": "fake.random.randint(1,100)"
+      }
+    },
+    {
+      "name": "DECIMAL",
+      "dataType": "DECIMAL",
+      "config": {
+        "expression": "fake.random.randint(100,1000)/100"
+      }
+    }
+  ],
+  "dateTimeFieldSpecs": [
+    {
+      "name": "created_at",
+      "dataType": "STRING",
+      "config": {
+        "expression": "fake.date_time()"
+      }
+    },
+    {
+      "name": "created_at_datetime",
+      "dataType": "LONG",
+      "format": "1:MILLISECONDS:EPOCH",
+      "granularity": "1:MILLISECONDS",
+      "config": {
+        "expression": "fake.unix_time()"
+      }
+    },
+    {
+      "name": "row_refreshed_at",
+      "dataType": "STRING",
+      "format": "SIMPLE_DATE_FORMAT|yyyy-MM-dd'T'HH:mm:ss.SSSZ",
+      "granularity": "MILLISECONDS|1",
+      "config": {
+        "expression": "fake.date_time_between(datetime(2022, 3, 31))"
+      }
+    },
+    {
+      "name": "row_refreshed_at_day",
+      "dataType": "STRING",
+      "format": "SIMPLE_DATE_FORMAT|yyyy-MM-dd",
+      "granularity": "MILLISECONDS|1",
+      "config": {
+        "expression": "fake.unix_time()"
+      }
+    },
+    {
+      "name": "updated_at",
+      "dataType": "STRING",
+      "format": "SIMPLE_DATE_FORMAT|yyyy-MM-dd'T'HH:mm:ss.SSSZ",
+      "granularity": "MILLISECONDS|1",
+      "config": {
+        "expression": "fake.unix_time()"
+      }
+    }
+  ],
+  "primaryKeyColumns": [
+    "team_id"
+  ],
+  "connection": {
+    "target": "Kafka",
+    "type": "JSON",
+    "topic": "DataGenerator",
+    "partitionKey": "UUID",
+    "bootstrap.servers": "pkc-n00kk.us-east-1.aws.confluent.cloud:9092",
+    "security.protocol": "SASL_SSL",
+    "sasl.mechanisms": "PLAIN",
+    "sasl.username": "",
+    "sasl.password": ""
+  }
+}
